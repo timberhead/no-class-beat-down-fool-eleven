@@ -17,7 +17,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
+
 app.get("/api/notes", (request, response) => {
+
     console.log(allNotes);
     response.json(allNotes);
 });
@@ -36,6 +38,7 @@ app.get("*", (request, response) => {
 
 
 function createNewNote(body, notesArray) {
+
     const newNote = body;
     if (!Array.isArray(notesArray))
         notesArray = [];
@@ -46,7 +49,7 @@ function createNewNote(body, notesArray) {
     const newNoteId = notesArray[0].id + 1;
 
     body.id = newNoteId
-    // notesArray[0].id++;
+    
     console.log("notesArray", notesArray);
     console.log(newNote);
 
@@ -57,12 +60,14 @@ function createNewNote(body, notesArray) {
 }
 
 app.post("/api/notes", (request, response) => {
+
     const newNote = createNewNote(request.body, allNotes);
     response.json(newNote);
 });
 
 
 function deleteNote(id, notesArray) {
+
     for (let i = 0; i < notesArray.length; i++) {
         let note = notesArray[i];
 
@@ -77,6 +82,7 @@ function deleteNote(id, notesArray) {
 
 
 app.delete("/api/notes/:id", (request, response) => {
+
     deleteNote(request.params.id, allNotes);
     response.json(true);
 });

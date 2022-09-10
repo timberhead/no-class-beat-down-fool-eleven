@@ -2,4 +2,3 @@
 
 
 
-Note Taker Starter Code
